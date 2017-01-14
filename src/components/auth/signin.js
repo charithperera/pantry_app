@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'
@@ -15,16 +15,17 @@ class SignIn extends Component {
     if (this.props.errorMessage) {
       return (
         <div className="alert alert-danger">
-          <strong>Oops!</strong>{this.props.errorMessage}
+          {this.props.errorMessage}
         </div>
       )
     }
   }
 
   render() {
-    const { handleSubmit, fields: {email, password} } = this.props;
+    const { handleSubmit, fields: {email, password} }=this.props;
     return (
-      <form onSubmit = {handleSubmit(this.handleFormSubmit.bind(this))}>
+      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        {this.renderAlert()}
         <fieldset className="form-group">
           <label>Email</label>
           <Field name="email" component="input" type="email" className="form-control"/>
@@ -33,20 +34,19 @@ class SignIn extends Component {
           <label>Password</label>
           <Field name="password" component="input" type="password" className="form-control"/>
         </fieldset>
-        {this.renderAlert()}
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
     )
   }
 }
 
-// function mapStateToProps(state)  {
-//   return { errorMessage: state.auth.error };
-// };
+function mapStateToProps(state)  {
+  return { errorMessage: state.auth.error };
+};
 
 SignIn = reduxForm({
   form: 'SignInForm',
   fields: ['email', 'password']
 })(SignIn);
 
-export default SignIn = connect(null, actions)(SignIn);
+export default SignIn = connect(mapStateToProps, actions)(SignIn);
