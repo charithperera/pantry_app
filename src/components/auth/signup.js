@@ -26,9 +26,9 @@ class SignUp extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: {email, password, passwordConfirm }} = this.props;
+    const { handleSubmit } = this.props;
     return (
-      <form onSubmit = {handleSubmit(this.handleFormSubmit.bind(this))}>
+      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <div className={this.hasAlerts()}>
           {this.renderAlerts()}
         </div>
