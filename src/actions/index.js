@@ -27,6 +27,20 @@ export function signoutUser() {
   }
 }
 
+export function signupUser({ email, password, password_confirmation }) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/users`, { user: { email, password,  password_confirmation} })
+    .then(response => {
+      dispatch({ type: AUTH_USER })
+      localStorage.setItem('token', response.data.token);
+      browserHistory.push('/diary')
+    })
+    .catch(response => {
+      dispatch(authError(response.response.data.errors))
+    })
+  }
+}
+
 
 export function authError(error) {
   return {

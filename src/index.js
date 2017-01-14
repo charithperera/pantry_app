@@ -8,6 +8,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
 import SignIn from './components/auth/signin';
+import SignUp from './components/auth/signup';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -19,6 +20,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="signin" component={SignIn}></Route>
+        <Route path="signup" component={SignUp}></Route>
       </Route>
     </Router>
   </Provider>
