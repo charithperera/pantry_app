@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './header';
+import './app.css';
 
 export default class App extends Component {
   render() {
@@ -7,7 +8,7 @@ export default class App extends Component {
       <div>
         <Header />
         <div className="container">
-          {this.props.children}  
+          {this.props.children}
         </div>
       </div>
     );

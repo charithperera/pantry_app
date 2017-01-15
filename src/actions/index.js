@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './types'
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, SEARCH } from './types'
 
 const ROOT_URL = 'http://localhost:3000'
 
@@ -49,3 +49,30 @@ export function authError(error) {
     payload: error
   }
 }
+
+export function search(term) {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/search?term=${term}`)
+    .then(response => {
+      dispatch({ type: SEARCH, payload: response.data })
+    })
+    .catch(response => {
+      console.log('error');
+    })
+  }
+}
+
+// export function fetchMessage() {
+//   return function(dispatch) {
+//     axios.get(ROOT_URL, {
+//       headers: { authorization: localStorage.getItem('token') }
+//     })
+//     .then(response => {
+//       debugger;
+//       dispatch({
+//         type: FETCH_MESSAGE,
+//         payload: response.ressponse.data.message
+//       })
+//     })
+//   }
+// }
