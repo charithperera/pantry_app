@@ -6,7 +6,12 @@ import './search_result_item.css';
 
 class SearchResultItem extends Component {
   addFood() {
-    this.props.addFood(this.props.food);
+    debugger;
+
+    this.props.addFood({
+      date: this.props.date,
+      food: this.props.food
+    });
   }
 
   viewFood() {
@@ -47,10 +52,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addFood, viewFood }, dispatch);
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     results: state.search.results
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+    date: state.diary.date
+  }
+}
 
-export default connect(null, mapDispatchToProps)(SearchResultItem);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResultItem);
