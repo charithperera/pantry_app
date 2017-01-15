@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, SEARCH } from './types'
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, SEARCH, VIEW } from './types'
 
 const ROOT_URL = 'http://localhost:3000'
 
@@ -62,11 +62,31 @@ export function search(term) {
   }
 }
 
+export function addFood(food) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/addFood`, food, {
+      headers: { Authorization: localStorage.getItem('token') },
+    })
+    .then(response => {
+      console.log(response)
+    })
+    .catch(response => {
+      console.log(response)
+    })
+  }
+}
+
+export function viewFood(food) {
+  return function(dispatch) {
+    dispatch({ type: VIEW, payload: food })
+  }
+}
+
 // export function fetchMessage() {
 //   return function(dispatch) {
-//     axios.get(ROOT_URL, {
-//       headers: { authorization: localStorage.getItem('token') }
-//     })
+    // axios.get(ROOT_URL, {
+    //   headers: { authorization: localStorage.getItem('token') }
+    // })
 //     .then(response => {
 //       debugger;
 //       dispatch({

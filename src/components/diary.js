@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from './search_bar';
 import SearchResults from './search_results';
+import FoodDetail from './food_detail';
 
 class Diary extends Component {
   render() {
@@ -20,6 +21,7 @@ class Diary extends Component {
           <div className="col-md-4">
             <h3>Nutrition</h3>
             {/* <FoodDetail food={this.state.selectedFood}/> */}
+            <FoodDetail />
           </div>
           <div className="col-md-4">
             <h3>My Food</h3>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import SearchResultItem from './search_result_item';
+import SearchResultItem from './search_result_item';
 import './search_results.css';
 
 class SearchResults extends Component {
@@ -9,7 +9,7 @@ class SearchResults extends Component {
     if (this.props.results) {
       return this.props.results.map((food) => {
         return (
-          <li key={food.id}>{food.name}</li>
+          <SearchResultItem food={food} key={food.id}/>
         )
       })
     }
@@ -32,7 +32,7 @@ class SearchResults extends Component {
 
 function mapStateToProps(state) {
   return {
-    results: state.search.results
+    results: state.diary.results
   }
 }
 
